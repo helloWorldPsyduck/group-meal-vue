@@ -92,7 +92,6 @@
           <a-icon type="down"/>
         </a-button>
       </a-dropdown>
-      <j-super-query :fieldList="superQueryFieldList" @handleSuperQuery="handleSuperQuery"/>
     </div>
 
     <!-- table区域-begin -->
@@ -187,13 +186,11 @@
   import JInput from '@/components/jeecg/JInput'
   import UserRecycleBinModal from './modules/UserRecycleBinModal'
   import JSuperQuery from '@/components/jeecg/JSuperQuery'
-  import JThirdAppButton from '@/components/jeecgbiz/thirdApp/JThirdAppButton'
 
   export default {
     name: "UserList",
     mixins: [JeecgListMixin],
     components: {
-      JThirdAppButton,
       SysUserAgentModal,
       UserModal,
       PasswordModal,
@@ -256,18 +253,6 @@
             align: "center",
             width: 100,
             dataIndex: 'phone'
-          },
-          {
-            title: '部门',
-            align: "center",
-            width: 180,
-            dataIndex: 'orgCodeTxt'
-          },
-          {
-            title: '负责部门',
-            align: "center",
-            width: 180,
-            dataIndex: 'departIds_dictText'
           },
           {
             title: '状态',

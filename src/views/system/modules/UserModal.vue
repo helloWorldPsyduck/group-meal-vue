@@ -48,46 +48,12 @@
           <a-input placeholder="请输入手机号码" v-model="model.phone" />
         </a-form-model-item>
 
-        <a-form-model-item label="职务" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-select-position placeholder="请选择职务" :multiple="false" v-model="model.post"/>
-        </a-form-model-item>
-
         <a-form-model-item label="角色分配" :labelCol="labelCol" :wrapperCol="wrapperCol" v-show="!roleDisabled" >
           <j-multi-select-tag
                   :disabled="disableSubmit"
                   v-model="model.selectedroles"
                   :options="rolesOptions"
                   placeholder="请选择角色">
-          </j-multi-select-tag>
-        </a-form-model-item>
-
-        <!--部门分配-->
-        <a-form-model-item label="部门分配" :labelCol="labelCol" :wrapperCol="wrapperCol" v-show="!departDisabled">
-          <j-select-depart v-model="model.selecteddeparts" :multi="true" @back="backDepartInfo" :backDepart="true" :treeOpera="true">></j-select-depart>
-        </a-form-model-item>
-
-        <!--租户分配-->
-        <a-form-model-item label="租户分配" :labelCol="labelCol" :wrapperCol="wrapperCol" v-show="!departDisabled">
-          <j-multi-select-tag
-                  :disabled="disableSubmit"
-                  v-model="model.relTenantIds"
-                  :options="tenantsOptions"
-                  placeholder="请选择租户">
-          </j-multi-select-tag>
-        </a-form-model-item>
-
-        <a-form-model-item label="身份" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-radio-group  v-model="model.userIdentity"  @change="identityChange">
-            <a-radio :value="1">普通用户</a-radio>
-            <a-radio :value="2">上级</a-radio>
-          </a-radio-group>
-        </a-form-model-item>
-        <a-form-model-item label="负责部门" :labelCol="labelCol" :wrapperCol="wrapperCol"  v-show="departIdShow==true">
-          <j-multi-select-tag
-                  :disabled="disableSubmit"
-                  v-model="model.departIds"
-                  :options="nextDepartOptions"
-                  placeholder="请选择负责部门">
           </j-multi-select-tag>
         </a-form-model-item>
 
@@ -118,11 +84,6 @@
         <a-form-model-item label="座机" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="telephone">
           <a-input placeholder="请输入座机" v-model="model.telephone" />
         </a-form-model-item>
-
-        <a-form-model-item label="工作流引擎" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <j-dict-select-tag  v-model="model.activitiSync"  placeholder="请选择是否同步工作流引擎" :type="'radio'" dictCode="activiti_sync"/>
-        </a-form-model-item>
-
       </a-form-model>
     </a-spin>
 
@@ -163,7 +124,7 @@
         validatorRules:{
           username:[{required: true, message: '请输入用户账号!'},
             {validator: this.validateUsername,}],
-          password: [{required: true,pattern:/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,./]).{8,}$/,message: '密码由8位数字、大小写字母和特殊符号组成!'},
+          password: [{required: true,message: '密码由8位数字、大小写字母和特殊符号组成!'},
             {validator: this.validateToNextPassword,trigger: 'change'}],
           confirmpassword: [{required: true, message: '请重新输入登录密码!',},
             { validator: this.compareToFirstPassword,}],
@@ -195,7 +156,6 @@
           userWithDepart: "/sys/user/userDepartList", // 引入为指定用户查看部门信息需要的url
           userId:"/sys/user/generateUserId", // 引入生成添加用户情况下的url
           syncUserByUserName:"/act/process/extActProcess/doSyncUserByUserName",//同步用户到工作流
-          queryTenantList: '/sys/tenant/queryList'
         },
         tenantsOptions: [],
         rolesOptions:[],
@@ -206,7 +166,6 @@
       const token = Vue.ls.get(ACCESS_TOKEN);
       this.headers = {"X-Access-Token":token}
       this.initRoleList()
-      this.initTenantList()
     },
     computed:{
       uploadAction:function () {
@@ -258,18 +217,6 @@
         }else{
           this.drawerWidth = 700;
         }
-      },
-      //初始化租户字典
-      initTenantList(){
-        getAction(this.url.queryTenantList).then(res=>{
-          if(res.success){
-            this.tenantsOptions = res.result.map((item,index,arr)=>{
-              let c = {label:item.name, value: item.id+""}
-              return c;
-            })
-            console.log('this.tenantsOptions: ',this.tenantsOptions)
-          }
-        })
       },
       //初始化角色字典
       initRoleList(){

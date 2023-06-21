@@ -124,11 +124,6 @@
         }else if (this.linkList.indexOf(newRoute.fullPath) < 0) {
           this.linkList.push(newRoute.fullPath)
           this.pageList.push(Object.assign({},newRoute))
-          //// update-begin-author:sunjianlei date:20200103 for: 如果新增的页面配置了缓存路由，那么就强制刷新一遍 #842
-          // if (newRoute.meta.keepAlive) {
-          //   this.routeReload()
-          // }
-          //// update-end-author:sunjianlei date:20200103 for: 如果新增的页面配置了缓存路由，那么就强制刷新一遍 #842
         } else if (this.linkList.indexOf(newRoute.fullPath) >= 0) {
           let oldIndex = this.linkList.indexOf(newRoute.fullPath)
           let oldPositionRoute = this.pageList[oldIndex]
@@ -183,7 +178,7 @@
        * @param title 要修改的新标题
        */
       changeTitle(title) {
-        let projectTitle = "Jeecg-Boot 企业级低代码平台"
+        let projectTitle = "Group-Meal 团餐平台"
         // 首页特殊处理
         if (this.$route.path === indexKey) {
           document.title = projectTitle
@@ -239,8 +234,8 @@
         index = index >= this.linkList.length ? this.linkList.length - 1 : index
         this.activePage = this.linkList[index]
 
-        //update-begin--Author:scott  Date:20201015 for：路由缓存问题，关闭了tab页时再打开就不刷新 #842
-        //关闭页面则从缓存cache_included_routes中删除路由，下次点击菜单会重新加载页面
+        // update-begin--Author:scott  Date:20201015 for：路由缓存问题，关闭了tab页时再打开就不刷新 #842
+        // 关闭页面则从缓存cache_included_routes中删除路由，下次点击菜单会重新加载页面
         let cacheRouterArray = Vue.ls.get(CACHE_INCLUDED_ROUTES) || []
         if (removeRoute && removeRoute[0]) {
           let componentName = removeRoute[0].meta.componentName
@@ -252,7 +247,7 @@
           }
           this.emitPageClosed(removeRoute[0])
         }
-        //update-end--Author:scott  Date:20201015 for：路由缓存问题，关闭了tab页时再打开就不刷新 #842
+        // update-end--Author:scott  Date:20201015 for：路由缓存问题，关闭了tab页时再打开就不刷新 #842
 
       },
       // 触发 page-closed （页面关闭）全局事件
@@ -342,35 +337,35 @@
           this.activePage = this.linkList[this.linkList.length - 1]
         }
       },
-      //update-begin-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
-      dynamicRouterShow(key,title){
+      // update-begin-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
+      dynamicRouterShow(key, title) {
         let keyIndex = this.linkList.indexOf(key)
-        if(keyIndex>=0){
+        if (keyIndex >= 0) {
           let currRouter = this.pageList[keyIndex]
-          let meta = Object.assign({},currRouter.meta,{title:title})
-          this.pageList.splice(keyIndex, 1, Object.assign({},currRouter,{meta:meta}))
+          let meta = Object.assign({}, currRouter.meta, { title: title })
+          this.pageList.splice(keyIndex, 1, Object.assign({}, currRouter, { meta: meta }))
           if (key === this.activePage) {
             this.changeTitle(title)
           }
         }
       },
-      //update-end-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
+      // update-end-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
 
-      //update-begin-author:taoyan date:20191008 for:路由刷新
-      routeReload(){
+      // update-begin-author:taoyan date:20191008 for:路由刷新
+      routeReload() {
         this.reloadFlag = false
         let ToggleMultipage = "ToggleMultipage"
-        this.$store.dispatch(ToggleMultipage,false)
-        this.$nextTick(()=>{
-          this.$store.dispatch(ToggleMultipage,true)
+        this.$store.dispatch(ToggleMultipage, false)
+        this.$nextTick(() => {
+          this.$store.dispatch(ToggleMultipage, true)
           this.reloadFlag = true
         })
       },
-      //update-end-author:taoyan date:20191008 for:路由刷新
-      //新增一个返回方法
-      excuteCallback(callback){
+      // update-end-author:taoyan date:20191008 for:路由刷新
+      // 新增一个返回方法
+      excuteCallback(callback) {
         callback()
-      },
+      }
     }
   }
 </script>
@@ -456,6 +451,5 @@
       border-color: @primary-color!important;
     }
   }
-
 
 </style>

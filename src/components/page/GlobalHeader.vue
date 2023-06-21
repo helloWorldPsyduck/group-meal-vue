@@ -17,8 +17,8 @@
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click="toggle"/>
 
-      <span v-if="device === 'desktop'">欢迎进入 Jeecg-Boot 企业级低代码平台</span>
-      <span v-else>Jeecg-Boot</span>
+      <span v-if="device === 'desktop'">欢迎进入 Group-Meal 团餐平台</span>
+      <span v-else>Group-Meal</span>
 
       <user-menu :theme="theme"/>
     </div>
@@ -59,7 +59,7 @@
     components: {
       UserMenu,
       SMenu,
-      Logo,
+      Logo
     },
     mixins: [mixin],
     props: {
@@ -91,14 +91,13 @@
     data() {
       return {
         headerBarFixed: false,
-        //update-begin--author:sunjianlei---date:20190508------for: 顶部导航栏过长时显示更多按钮-----
         topMenuStyle: {
           headerIndexLeft: {},
           topNavHeader: {},
           headerIndexRight: {},
           topSmenuStyle: {}
         },
-        chatStatus: '',
+        chatStatus: ''
       }
     },
     watch: {
@@ -115,14 +114,11 @@
         }
       }
     },
-    //update-end--author:sunjianlei---date:20190508------for: 顶部导航栏过长时显示更多按钮-----
     mounted() {
       window.addEventListener('scroll', this.handleScroll)
-      //update-begin--author:sunjianlei---date:20190508------for: 顶部导航栏过长时显示更多按钮-----
       if (this.mode === 'topmenu') {
         this.buildTopMenuStyle()
       }
-      //update-end--author:sunjianlei---date:20190508------for: 顶部导航栏过长时显示更多按钮-----
     },
     methods: {
       handleScroll() {
@@ -140,7 +136,6 @@
       toggle() {
         this.$emit('toggle')
       },
-      //update-begin--author:sunjianlei---date:20190508------for: 顶部导航栏过长时显示更多按钮-----
       buildTopMenuStyle() {
         if (this.mode === 'topmenu') {
           if (this.device === 'mobile') {
@@ -158,13 +153,9 @@
           }
         }
       },
-      //update-begin--author:sunjianlei---date:20190508------for: 顶部导航栏过长时显示更多按钮-----
-
-      // update-begin-author:sunjianlei date:20210508 for: 修复动态功能测试菜单、带参数菜单标题错误、展开错误的问题
       handleUpdateMenuTitle(value) {
         this.$emit('updateMenuTitle', value)
-      },
-      // update-end-author:sunjianlei date:20210508 for: 修复动态功能测试菜单、带参数菜单标题错误、展开错误的问题
+      }
 
     }
   }
@@ -221,7 +212,5 @@
     height: @height;
     line-height: @height;
   }
-
-  /* update_end author:scott date:20190220 for: 缩小首页布局顶部的高度*/
 
 </style>

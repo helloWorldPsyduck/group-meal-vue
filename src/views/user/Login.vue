@@ -5,20 +5,10 @@
         <a-tab-pane key="tab1" tab="账号密码登录">
           <login-account ref="alogin" @validateFail="validateFail" @success="requestSuccess" @fail="requestFailed"></login-account>
         </a-tab-pane>
-
-        <a-tab-pane key="tab2" tab="手机号登录">
-          <login-phone ref="plogin" @validateFail="validateFail" @success="requestSuccess" @fail="requestFailed"></login-phone>
-        </a-tab-pane>
       </a-tabs>
 
       <a-form-model-item>
         <a-checkbox @change="handleRememberMeChange" default-checked>自动登录</a-checkbox>
-        <router-link :to="{ name: 'alteration'}" class="forge-password" style="float: right;">
-          忘记密码
-        </router-link>
-        <router-link :to="{ name: 'register'}" class="forge-password" style="float: right;margin-right: 10px" >
-          注册账户
-        </router-link>
       </a-form-model-item>
 
       <a-form-item style="margin-top:24px">
@@ -28,16 +18,13 @@
 
     </a-form-model>
 
-    <two-step-captcha v-if="requiredTwoStepCaptcha" :visible="stepCaptchaVisible" @success="stepCaptchaSuccess" @cancel="stepCaptchaCancel"></two-step-captcha>
     <login-select-tenant ref="loginSelect" @success="loginSelectOk"></login-select-tenant>
-    <third-login ref="thirdLogin"></third-login>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import { ACCESS_TOKEN, ENCRYPTED_STRING } from '@/store/mutation-types'
-import ThirdLogin from './third/ThirdLogin'
 import LoginSelectTenant from './LoginSelectTenant'
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { getEncryptedString } from '@/utils/encryption/aesEncrypt'
@@ -50,7 +37,6 @@ export default {
     components: {
       LoginSelectTenant,
       TwoStepCaptcha,
-      ThirdLogin,
       LoginAccount,
       LoginPhone
     },
