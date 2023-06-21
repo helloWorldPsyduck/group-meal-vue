@@ -22,7 +22,7 @@
         :pagination="ipagination" :loading="loading" class="j-table-force-nowrap" @change="handleTableChange">
 
         <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)">编辑</a>
+          <a @click="handleEdit(record)" v-has="'sysConfig:edit'">编辑</a>
         </span>
 
       </a-table>
@@ -61,7 +61,7 @@ export default {
           }
         },
         {
-          title: '餐馆涵盖范围',
+          title: '餐馆配送范围',
           align: "center",
           dataIndex: 'restaurantCoverage',
           customRender: (text) => {
@@ -69,7 +69,7 @@ export default {
           }
         },
         {
-          title: '饭店开团点允许的最近距离',
+          title: '开团点允许的最近距离',
           align: "center",
           dataIndex: 'groupOrderMinDistance',
           customRender: (text) => {

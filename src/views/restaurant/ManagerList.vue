@@ -6,16 +6,9 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
 
-          <a-col :md="6" :sm="12">
-            <a-form-item label="配置名">
-              <j-input placeholder="输入配置名" v-model="queryParam.name"></j-input>
-            </a-form-item>
-          </a-col>
-
           <a-col :xl="6" :lg="7" :md="8" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
-              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
             </span>
           </a-col>
 
@@ -23,47 +16,33 @@
       </a-form>
     </div>
 
-    <!-- 操作按钮区域 -->
-    <div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus" v-has="'groupSpec:add'">新增</a-button>
-    </div>
-
     <!-- table区域-begin -->
     <div>
       <a-table ref="table" size="middle" bordered rowKey="id" :columns="columns" :dataSource="dataSource"
         :pagination="ipagination" :loading="loading" class="j-table-force-nowrap" @change="handleTableChange">
 
-        <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)" v-has="'groupSpec:edit'">编辑</a>
-          <a-divider type="vertical" v-has="'groupSpec:delete'"/>
-          <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)" v-has="'groupSpec:delete'">
-            <a>删除</a>
-          </a-popconfirm>
+        <span slot="manor" slot-scope="text, record">
+          <div v-for="(value) in text">{{ value }}</div>
         </span>
 
       </a-table>
     </div>
     <!-- table区域-end -->
-
-    <!-- 表单区域 -->
-    <groupSpec-modal ref="modalForm" @ok="modalFormOk"></groupSpec-modal>
   </a-card>
 </template>
 
 <script>
 import '@/assets/less/TableExpand.less'
-import GroupSpecModal from './modules/GroupSpecModal'
 import { JeecgListMixin } from '@/mixins/JeecgListMixin'
 
 export default {
-  name: "GroupSpecList",
+  name: "SysConfigList",
   mixins: [JeecgListMixin],
   components: {
-    GroupSpecModal
   },
   data() {
     return {
-      description: '菜品规格管理页面',
+      description: '人员管理页面',
       // 表头
       columns: [
         {
@@ -77,28 +56,54 @@ export default {
           }
         },
         {
-          title: '配置名',
+          title: '姓名',
           align: "center",
           dataIndex: 'name',
         },
         {
-          title: '最少人数',
+          title: '手机号',
           align: "center",
-          dataIndex: 'minPeople',
+          dataIndex: 'phone',
+        },
+        {
+          title: '角色',
+          align: "center",
+          dataIndex: 'type',
           customRender: (text) => {
-            return text + "人";
+            var roles = text.split(",");
+            let roleStr = "";
+            if (roles.indexOf("1") >= 0){
+              roleStr += "超级管理员，"
+            }
+            if (roles.indexOf("2") >= 0){
+              roleStr += "区域经理，"
+            }
+            if (roles.indexOf("3") >= 0){
+              roleStr += "客户端销售，"
+            }
+            if (roles.indexOf("4") >= 0){
+              roleStr += "餐馆销售，"
+            }
+            if (roleStr) {
+              roleStr = roleStr.substring(0, roleStr.length-1);
+            }
+            return roleStr;
           }
         },
         {
-          title: '操作',
-          dataIndex: 'action',
+          title: '辖区',
           align: "center",
-          scopedSlots: { customRender: 'action' },
-        }
+          dataIndex: 'manor',
+          scopedSlots: { customRender: 'manor' },
+        },
+        {
+          title: '创建时间',
+          align: "center",
+          dataIndex: 'createTime',
+        },
       ],
       url: {
-        list: "/groupSpec/page",
-        delete: "/groupSpec/delete",
+        list: "/manager/list",
       },
     }
   },

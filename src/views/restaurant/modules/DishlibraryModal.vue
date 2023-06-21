@@ -64,8 +64,8 @@ export default {
       validatorRules: {
       },
       url: {
-        add: "/org.jeecg.modules/dishlibrary/add",
-        edit: "/org.jeecg.modules/dishlibrary/edit",
+        add: "/dishLibrary/add",
+        edit: "/dishLibrary",
       },
     }
   },

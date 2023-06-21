@@ -13,8 +13,8 @@
       <a-form-model ref="form" :model="model" :rules="validatorRules">
         <a-row>
           <a-col :span="24">
-            <a-form-model-item label="餐馆涵盖范围" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="restaurantCoverage">
-              <a-input v-model="model.restaurantCoverage" placeholder="请输入餐馆涵盖范围"></a-input>
+            <a-form-model-item label="餐馆配送范围" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="restaurantCoverage">
+              <a-input v-model="model.restaurantCoverage" placeholder="请输入餐馆配送范围"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="24">
