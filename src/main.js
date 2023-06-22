@@ -49,6 +49,9 @@ import '@/components/jeecg/JVxeTable/install'
 import '@/components/JVxeCells/install'
 //表单验证
 import { rules } from '@/utils/rules'
+import BaiduMap from 'vue-baidu-map'
+import {BmlMarkerClusterer} from 'vue-baidu-map'
+
 Vue.prototype.rules = rules
 Vue.config.productionTip = false
 Vue.use(Storage, config.storageOptions)
@@ -62,6 +65,10 @@ Vue.use(preview)
 Vue.use(vueBus);
 Vue.use(JeecgComponents);
 Vue.use(VueAreaLinkage);
+Vue.use(BaiduMap, {
+  ak: 'fln0FGsm4LlGqjAt3o3M1aWSXIn7imzW'
+})
+Vue.component('bml-marker-cluster', BmlMarkerClusterer)
 
 SSO.init(() => {
   main()
