@@ -15,9 +15,6 @@ const init = (callback) => {
     } else {
       if (st) {
         validateSt(st, sevice, callback);
-      } else {
-        let serviceUrl = encodeURIComponent(sevice);
-        window.location.href = window._CONFIG['casPrefixUrl'] + "/login?service=" + serviceUrl;
       }
     }
     console.log("-------单点登录结束-------");
@@ -60,10 +57,6 @@ function validateSt(ticket,service,callback){
     //this.departConfirm(res)
     if(res.success){
       loginSuccess(callback);
-    }else{
-      let sevice = "http://"+window.location.host+"/";
-      let serviceUrl = encodeURIComponent(sevice);
-      window.location.href = window._CONFIG['casPrefixUrl']+"/login?service="+serviceUrl;
     }
   }).catch((err) => {
     console.log(err);

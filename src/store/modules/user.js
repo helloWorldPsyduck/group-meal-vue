@@ -186,11 +186,6 @@ const user = {
         Vue.ls.remove(TENANT_ID)
         //console.log('logoutToken: '+ logoutToken)
         logout(logoutToken).then(() => {
-          if (process.env.VUE_APP_SSO == 'true') {
-            let sevice = 'http://' + window.location.host + '/'
-            let serviceUrl = encodeURIComponent(sevice)
-            window.location.href = process.env.VUE_APP_CAS_BASE_URL + '/logout?service=' + serviceUrl
-          }
           resolve()
         }).catch(() => {
           resolve()

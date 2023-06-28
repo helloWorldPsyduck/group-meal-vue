@@ -182,10 +182,6 @@
         });
       },
       handlePreview(record) {
-        if (record && record.url) {
-          let url = window._CONFIG['onlinePreviewDomainURL'] + '?url=' + encodeURIComponent(record.url)
-          window.open(url, '_blank')
-        }
       }
     }
   }
