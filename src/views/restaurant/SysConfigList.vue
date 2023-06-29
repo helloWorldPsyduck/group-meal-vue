@@ -77,6 +77,14 @@ export default {
           }
         },
         {
+          title: '用户协议',
+          align: "center",
+          dataIndex: 'userAgreement',
+          customRender: (text) => {
+            return text.length > 30 ? (text.substring(0, 30)) : (text);
+          }
+        },
+        {
           title: '操作',
           dataIndex: 'action',
           align: "center",

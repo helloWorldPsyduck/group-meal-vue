@@ -1,7 +1,7 @@
 import XEUtils from 'xe-utils'
 import PropTypes from 'ant-design-vue/es/_util/vue-types'
 import { JVXETypes } from '@/components/jeecg/JVxeTable/jvxeTypes'
-import VxeWebSocketMixins from '../mixins/vxe.web.socket.mixins'
+// import VxeWebSocketMixins from '../mixins/vxe.web.socket.mixins'
 import { initDictOptions } from '@/components/dict/JDictSelectUtil'
 
 import { getRefPromise } from '../utils/vxeUtils'
@@ -22,7 +22,7 @@ export default {
       superTrigger: (name, event) => this.trigger(name, event)
     }
   },
-  mixins: [VxeWebSocketMixins],
+  // mixins: [VxeWebSocketMixins],
   components: {JVxeToolbar, JVxeSubPopover, JVxeDetailsModal, JVxePagination},
   props: {
     rowKey: PropTypes.string.def('id'),

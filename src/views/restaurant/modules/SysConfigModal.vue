@@ -22,6 +22,11 @@
               <a-input v-model="model.groupOrderMinDistance" placeholder="请输入开团点允许的最近距离"></a-input>
             </a-form-model-item>
           </a-col>
+          <a-col :span="24">
+            <a-form-model-item label="用户协议" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="userAgreement">
+              <a-textarea v-model="model.userAgreement" placeholder="请输入用户协议" allow-clear />
+            </a-form-model-item>
+          </a-col>
         </a-row>
       </a-form-model>
     </a-spin>
