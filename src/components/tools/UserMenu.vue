@@ -29,7 +29,6 @@
 </template>
 
 <script>
-  // import HeaderNotice from './HeaderNotice'
   import UserPassword from './UserPassword'
   import SettingDrawer from "@/components/setting/SettingDrawer";
   import DepartSelect from './DepartSelect'
@@ -52,7 +51,6 @@
       }
     },
     components: {
-      // HeaderNotice,
       UserPassword,
       DepartSelect,
       SettingDrawer

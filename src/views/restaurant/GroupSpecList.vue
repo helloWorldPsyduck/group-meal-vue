@@ -90,6 +90,38 @@ export default {
           }
         },
         {
+          title: '团长返利',
+          align: "center",
+          customRender: (text, row) => {
+            if (!row.leaderMinRate && !row.leaderMaxRate) {
+              return "0%";
+            }
+            if (!row.leaderMinRate && row.leaderMinRate != 0) {
+              return row.leaderMaxRate + "%"
+            }
+            if (!row.leaderMaxRate && row.leaderMaxRate != 0) {
+              return row.leaderMinRate + "%"
+            }
+            return row.leaderMinRate + "% ~" + row.leaderMaxRate + "%";
+          }
+        },
+        {
+          title: '团员返利',
+          align: "center",
+          customRender: (text, row) => {
+            if (!row.memberMinRate && !row.memberMaxRate) {
+              return "0%";
+            }
+            if (!row.memberMinRate && row.memberMinRate != 0) {
+              return row.memberMaxRate + "%"
+            }
+            if (!row.memberMaxRate && row.memberMaxRate != 0) {
+              return row.memberMinRate + "%"
+            }
+            return row.memberMinRate + "% ~" + row.memberMaxRate + "%";
+          }
+        },
+        {
           title: '操作',
           dataIndex: 'action',
           align: "center",

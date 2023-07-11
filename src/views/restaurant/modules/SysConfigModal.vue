@@ -23,6 +23,11 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="24">
+            <a-form-model-item label="支付运费的订单是否返利" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="cashBackExpressOrder">
+              <a-switch :checked="model.cashBackExpressOrder == 1" @click="changeCashBackExpressOrder"/>
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="24">
             <a-form-model-item label="用户协议" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="userAgreement">
               <a-textarea v-model="model.userAgreement" placeholder="请输入用户协议" allow-clear />
             </a-form-model-item>
@@ -100,6 +105,14 @@
       handleCancel () {
         this.close()
       },
+      changeCashBackExpressOrder(){
+        if (this.model.cashBackExpressOrder == 1) {
+          this.model.cashBackExpressOrder = 0;
+        } else {
+          this.model.cashBackExpressOrder = 1;
+        }
+      },
+
 
 
     }

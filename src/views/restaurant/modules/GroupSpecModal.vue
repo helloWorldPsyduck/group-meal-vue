@@ -15,6 +15,18 @@
               <a-input-number v-model="model.minPeople" placeholder="请输入最少人数"></a-input-number>
             </a-form-model-item>
           </a-col>
+          <a-col :span="24">
+            <a-form-model-item label="团长返利" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="minPeople">
+              <a-input-number :min="0" :formatter="value => `${value}%`" v-model="model.leaderMinRate" placeholder="请输入最少比例"></a-input-number> ~
+              <a-input-number :min="model.leaderMinRate" :formatter="value => `${value}%`" v-model="model.leaderMaxRate" placeholder="请输入最多比例"></a-input-number>
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="24">
+            <a-form-model-item label="团员返利" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="minPeople">
+              <a-input-number :min="0" :formatter="value => `${value}%`" v-model="model.memberMinRate" placeholder="请输入最少比例"></a-input-number> ~
+              <a-input-number :min="model.memberMinRate" :formatter="value => `${value}%`" v-model="model.memberMaxRate" placeholder="请输入最多比例"></a-input-number>
+            </a-form-model-item>
+          </a-col>
         </a-row>
       </a-form-model>
     </a-spin>

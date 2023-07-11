@@ -85,6 +85,14 @@ export default {
           }
         },
         {
+          title: '支付运费的订单是否返利',
+          align: "center",
+          dataIndex: 'cashBackExpressOrder',
+          customRender: (text) => {
+            return text == 1 ? "是" : "否";
+          }
+        },
+        {
           title: '操作',
           dataIndex: 'action',
           align: "center",
