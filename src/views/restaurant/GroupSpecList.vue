@@ -122,6 +122,14 @@ export default {
           }
         },
         {
+          title: '返利人数',
+          align: "center",
+          dataIndex: 'peopleRate',
+          customRender: (text) => {
+            return text + "%";
+          }
+        },
+        {
           title: '操作',
           dataIndex: 'action',
           align: "center",

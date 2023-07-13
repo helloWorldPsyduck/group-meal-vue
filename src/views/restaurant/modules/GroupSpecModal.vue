@@ -27,6 +27,11 @@
               <a-input-number :min="model.memberMinRate" :formatter="value => `${value}%`" v-model="model.memberMaxRate" placeholder="请输入最多比例"></a-input-number>
             </a-form-model-item>
           </a-col>
+          <a-col :span="24">
+            <a-form-model-item label="返利人数" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="peopleRate">
+              <a-input-number :min="0" :formatter="value => `${value}%`" v-model="model.peopleRate" placeholder="请输入返利人数比例"></a-input-number>
+            </a-form-model-item>
+          </a-col>
         </a-row>
       </a-form-model>
     </a-spin>
