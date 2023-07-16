@@ -6,30 +6,18 @@
       <a-form-model ref="form" :model="model" :rules="validatorRules">
         <a-row>
           <a-col :span="24">
-            <a-form-model-item label="配置名" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="name">
-              <a-input v-model="model.name" placeholder="请输入配置名"></a-input>
+            <a-form-model-item label="起" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="begin">
+              <a-input-number :min="0" :max="23" v-model="model.begin" placeholder="请输入营业开始时间"></a-input-number>
             </a-form-model-item>
           </a-col>
           <a-col :span="24">
-            <a-form-model-item label="最少人数" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="minPeople">
-              <a-input-number v-model="model.minPeople" placeholder="请输入最少人数"></a-input-number>
+            <a-form-model-item label="止" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="end">
+              <a-input-number :min="model.begin" :max="24" v-model="model.end" placeholder="请输入营业结束时间" width="300px"></a-input-number>
             </a-form-model-item>
           </a-col>
           <a-col :span="24">
-            <a-form-model-item label="团长返利" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="minPeople">
-              <a-input-number :min="0" :formatter="value => `${value}%`" v-model="model.leaderMinRate" placeholder="请输入最少比例"></a-input-number> ~
-              <a-input-number :min="model.leaderMinRate" :formatter="value => `${value}%`" v-model="model.leaderMaxRate" placeholder="请输入最多比例"></a-input-number>
-            </a-form-model-item>
-          </a-col>
-          <a-col :span="24">
-            <a-form-model-item label="团员返利" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="minPeople">
-              <a-input-number :min="0" :formatter="value => `${value}%`" v-model="model.memberMinRate" placeholder="请输入最少比例"></a-input-number> ~
-              <a-input-number :min="model.memberMinRate" :formatter="value => `${value}%`" v-model="model.memberMaxRate" placeholder="请输入最多比例"></a-input-number>
-            </a-form-model-item>
-          </a-col>
-          <a-col :span="24">
-            <a-form-model-item label="返利人数" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="peopleRate">
-              <a-input-number :min="0" :formatter="value => `${value}%`" v-model="model.peopleRate" placeholder="请输入返利人数比例"></a-input-number>
+            <a-form-model-item label="文本" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="content">
+              <a-input v-model="model.content" placeholder="请输入文本"></a-input>
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -43,7 +31,7 @@ import { httpAction } from '@/api/manage'
 import moment from "moment"
 
 export default {
-  name: "GroupSpecModal",
+  name: "OpeningHoursModal",
   data() {
     return {
       title: "操作",
@@ -62,8 +50,8 @@ export default {
       validatorRules: {
       },
       url: {
-        edit: "/groupSpec/edit",
-        add: "/groupSpec/add",
+        edit: "/restaurantOpeningHours/edit",
+        add: "/restaurantOpeningHours/add",
       },
     }
   },
