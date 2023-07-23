@@ -58,7 +58,7 @@
         :pagination="ipagination" :loading="loading" class="j-table-force-nowrap" @change="handleTableChange">
 
         <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)" v-has="'groupSpec:edit'">编辑</a>
+          <a @click="handleEdit(record)" v-if="record.status == 1">编辑</a>
         </span>
 
       </a-table>
